@@ -35,9 +35,29 @@ const TodoForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" />
-      <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Title"
+        aria-label="New todo title input"
+        aria-required="true"
+        required
+      />
+      <input
+        type="text"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        placeholder="Description"
+        aria-label="New todo description input"
+        aria-required="false"
+      />
       <button type="submit">Add Item</button>
+
+      {/* Announce updates without interrupting the user experience */}
+      <div aria-live="polite" style={{ visibility: title.trim() ? 'visible' : 'hidden' }}>
+        Task "{title}" added.
+      </div>
     </form>
   )
 }

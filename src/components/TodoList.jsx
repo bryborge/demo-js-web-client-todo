@@ -38,14 +38,20 @@ const TodoList = () => {
   }
 
   return (
-    <ul>
+    <ul aria-label="To do list">
       {todos.map(todo => (
         <li key={todo.id} style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
-          {todo.title} - {todo.description}
-          <button onClick={() => handleToggleCompleted(todo.id)}>
+          <span>{todo.title} - {todo.description}</span>
+          <button
+            onClick={() => handleToggleCompleted(todo.id)}
+            aria-pressed={todo.completed ? 'Mark as incompleted' : 'Mark as completed'}
+          >
             {todo.completed ? 'Undo' : 'Complete'}
           </button>
-          <button onClick={() => handleRemoveTodo(todo.id)}>
+          <button
+            onClick={() => handleRemoveTodo(todo.id)}
+            aria-label={`Remove task "${todo.title}"`}
+          >
             Remove
           </button>
         </li>
