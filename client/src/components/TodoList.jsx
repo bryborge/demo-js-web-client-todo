@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleComplete } from '../features/todoSlice';
+import { removeTodo, toggleComplete } from '../features/todoSlice';
 
 const TodoList = () => {
   const todos = useSelector(state => state.todos.todos);
@@ -9,6 +9,10 @@ const TodoList = () => {
     dispatch(toggleComplete(id));
   }
 
+  const handleRemoveTodo = (id) => {
+    dispatch(removeTodo(id));
+  }
+
   return (
     <ul>
       {todos.map(todo => (
@@ -16,6 +20,9 @@ const TodoList = () => {
           {todo.title} - {todo.description}
           <button onClick={() => handleToggleCompleted(todo.id)}>
             {todo.completed ? 'Undo' : 'Complete'}
+          </button>
+          <button onClick={() => handleRemoveTodo(todo.id)}>
+            Remove
           </button>
         </li>
       ))}
