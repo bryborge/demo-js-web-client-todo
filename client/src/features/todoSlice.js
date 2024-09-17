@@ -1,30 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// TODO: If we want to keep state across sessions, we'll need to store todos somewhere and load it here.
 const initialState = {
-  // TODO: remove in favor of "real" data. This is just to  show that redux is wired up correctly
-  todos: [
-    {
-      id: 1,
-      title: 'Todo 1',
-      description: 'Description 1',
-    },
-    {
-      id: 2,
-      title: 'Todo 2',
-      description: 'Description 2',
-    },
-    {
-      id: 3,
-      title: 'Todo 3',
-      description: 'Description 3',
-    }
-  ],
+  todos: [],
 };
 
 const todoSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
+    addTodo: (state, action) => {
+      state.todos.push(action.payload);
+    },
     toggleComplete: (state, action) => {
       const todo = state.todos.find(todo => todo.id === action.payload);
       if (todo) {
@@ -34,6 +21,6 @@ const todoSlice = createSlice({
   },
 });
 
-export const { toggleComplete } = todoSlice.actions;
+export const { addTodo, toggleComplete } = todoSlice.actions;
 
 export default todoSlice.reducer;

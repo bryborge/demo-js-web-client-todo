@@ -1,6 +1,17 @@
-import todoReducer, { toggleComplete } from './todoSlice';
+import todoReducer, { addTodo, toggleComplete } from './todoSlice';
 
 describe('todoSlice reducer', () => {
+  it('should add a new todo', () => {
+    // Arrange
+    const initialState = {
+      todos: [],
+    };
+    // Act
+    const newState = todoReducer(initialState, addTodo({ id: '1', text: 'Test Todo', completed: false }));
+    // Assert
+    expect(newState.todos.length).toBe(1);
+  });
+
   it('should toggle the completion status of a task', () => {
     // Arrange
     const initialState = {
