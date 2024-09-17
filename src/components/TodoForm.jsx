@@ -3,11 +3,24 @@ import { useDispatch } from 'react-redux';
 import { addTodo } from '../features/todoSlice';
 import { v4 as uuidv4 } from 'uuid';
 
+/**
+ * React component representing a form to add a new todo item.
+ *
+ * Calls {@link addTodo} with the form data when the form is submitted.
+ *
+ * @returns {React.ReactElement} The rendered form.
+ */
 const TodoForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const dispatch = useDispatch();
 
+  /**
+   * Handles the submission of the form.
+   *
+   * Calls {@link addTodo} with the form data, and resets the state of the
+   * component to empty strings.
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
 
